@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DevSocha - </title>
+    <title>DevSocha - {{$tittle}} </title>
     <link rel="stylesheet" href="{{\Illuminate\Support\Facades\URL::asset('style.css')}}" type="text/css" />
 </head>
 

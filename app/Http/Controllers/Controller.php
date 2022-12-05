@@ -26,6 +26,39 @@ class Controller extends BaseController
         return view('app',[
             'demo'=>$demo,
             'idUser'=>$idUser,
+            'tittle'=>'panel'
+
             ]);
+    }
+    public function sendMoney (){
+        $userDemo = new UserDemoController();
+        $demo = $userDemo->getInformation();
+        $idUser = session()->get('idUser');
+        return view('sendMoney',[
+            'demo'=>$demo,
+            'idUser'=>$idUser,
+            'tittle'=> 'przelew bankowy',
+        ]);
+    }
+    public function transformValue (){
+        $userDemo = new UserDemoController();
+        $demo = $userDemo->getInformation();
+        $idUser = session()->get('idUser');
+        return view('transformValue',[
+            'demo'=>$demo,
+            'idUser'=>$idUser,
+            'tittle'=> 'kantor',
+        ]);
+    }
+    public function listTransaction (){
+        $userDemo = new UserDemoController();
+        $demo = $userDemo->getInformation();
+        $idUser = session()->get('idUser');
+        return view('listTransaction',[
+            'demo'=>$demo,
+            'idUser'=>$idUser,
+            'tittle'=> 'lista transakcji',
+            'text'=>'Przelew wychodzący na numer konta bankowego xyz na kwote 111 zł'
+        ]);
     }
 }

@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\Controller::class,'index'])->name('startApp');
 Route::get('/accountView/{id}',[\App\Http\Controllers\Controller::class,'accountView'])->name('accountView');
+Route::get('/sendMoney',[\App\Http\Controllers\Controller::class,'sendMoney'])->name('moneySender');
+Route::get('/transformValue',[\App\Http\Controllers\Controller::class,'transformValue'])->name('transformValue');
+Route::get('/listTransaction',[\App\Http\Controllers\Controller::class,'listTransaction'])->name('listTransaction');
+

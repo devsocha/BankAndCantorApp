@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_demo_id');
+            $table->string('type');
+            $table->string('inorout');
+            $table->string('transfrom')->nullable();
+            $table->string('transto')->nullable();
+            $table->integer('sendTo')->nullable();
             $table->timestamps();
         });
     }
