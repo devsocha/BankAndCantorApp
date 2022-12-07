@@ -64,20 +64,24 @@ class Controller extends BaseController
     public function moneySender(Request $request){
         $idUser = session()->get('idUser');
         $kontoController = new KontoController();
-        $money;
+        $money = 2;
         $currency = 'USD';
+        $userSenderAccountNumber = 8;
         $currency = 'konto' + $currency;
         // sprawdzenie czy ma takie fundusze
-        $existsMoney= $kontoController->checkMoneyOnAccount($idUser,$money,$currency)
+        $existsMoney= $kontoController->checkMoneyOnAccount($idUser,$money,$currency);
         // sprawdzenie czy konto do przelewu istnieje
-        $existsAccount = $kontoController->checkAccount();
+        $existsAccount = $kontoController->checkAccount($userSenderAccountNumber);
         if($existsAccount===true && $existsMoney === true){
             // dodawanie czynnosci 1
+            $activity = new ActivityController();
+            $activity->addSendMoneyInformation($userSenderAccountNumber, $money);
             // dodawanie czynnosci 2
+            $activity->addGetMoneyInformation($userSenderAccountNumber, $money);
             // odejmowanie od konta
-
+            $kontoController->takeMoneyFromAccount($money,$idUser,$currency);
             // dodawanie do konta
-            $this->sendMoneyToAccont($money,$numberAccount,$currency);
+           $kontoController->addMoneyToAccount($money,$userSenderAccountNumber,$currency);
         }
 
     }

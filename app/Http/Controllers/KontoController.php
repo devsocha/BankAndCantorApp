@@ -50,7 +50,8 @@ class KontoController extends Controller
             return false;
         }
     }
-    public function sendMoneyToAccont($money,$numberAccount,$currency){
+    public function addMoneyToAccount($money,$numberAccount,$currency){
+
         $account = Konto::where('id',$numberAccount)->first();
         switch($currency){
             case'kontoUSD':
@@ -65,17 +66,28 @@ class KontoController extends Controller
 
         }
         $newMoney = $oldMoney+$money;
-        $account = Konto::where('id',$numberAccount)->update([
+        $accountUpdate = Konto::where('id',$numberAccount)->update([
             $currency => $newMoney,
             ]);
-        $user = UserDemo::where('konto_id',$numberAccount)->first();
-        $userSenderId = $user->id;
-        $addActivities = Activity::create([
-            'user_demo_id' => session()->get('idUser'),
-            'type'=> 'Przelew',
-            'inorout'=>'wychodzący',
-            'sendTo'=> $userSenderId,
-            'money'=>$money,
+    }
+    public function takeMoneyFromAccount($money,$idUser,$currency){
+        $idAccount = $this->getAccount($idUser);
+        $account = Konto::where('id',$idAccount)->first();
+        switch($currency){
+            case'kontoUSD':
+                $oldMoney = $account->kontoUSD;
+                break;
+            case 'kontoPLN':
+                $oldMoney = $account->kontoPLN;
+                break;
+            case 'kontoEUR':
+                $oldMoney = $account->kontoEUR;
+                break;
+
+        }
+        $newMoney = $oldMoney+$money;
+        $accountUpdate = Konto::where('id',$idAccount)->update([
+            $currency => $newMoney,
         ]);
     }
 }

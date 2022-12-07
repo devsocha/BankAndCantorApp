@@ -55,12 +55,12 @@
             </div>
             <div class="all top-margin">
                 <form method="post" action="#">
-                    <input type="number" placeholder="Numer konta do przelewu"/>
-                    <input type="number" placeholder="Kwota przelewu"/>
-                    <select>
-                        <option VALUE="usd">USD - $</option>
-                        <option VALUE="pln">PLN - zł</option>
-                        <option VALUE="eur">EUR - &euro;</option>
+                    <input name="numberAccount" type="number" placeholder="Numer konta do przelewu" required/>
+                    <input name="money" type="number" placeholder="Kwota przelewu" required/>
+                    <select name="currency" required>
+                        <option VALUE="USD">USD - $</option>
+                        <option VALUE="PLN">PLN - zł</option>
+                        <option VALUE="EUR">EUR - &euro;</option>
                     </select>
                     <input type="submit" value="Przelej"/>
                 </form>

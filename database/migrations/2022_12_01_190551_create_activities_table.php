@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('transfrom')->nullable();
             $table->string('transto')->nullable();
             $table->integer('sendTo')->nullable();
+            $table->integer('sendFrom')->nullable();
             $table->double('money')->nullable();
             $table->double('moneyTransfered')->nullable();
             $table->timestamps();
