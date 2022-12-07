@@ -9,25 +9,50 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    public function addSendMoneyInformation($userSenderAccountNumber, $money){
+    public function addSendMoneyInformation($userSenderAccountNumber,$money,$idUser,$currency){
         $user = UserDemo::where('konto_id',$userSenderAccountNumber)->first();
         $userSenderId = $user->id;
+        switch($currency){
+            case'kontoEUR':
+                $currencyType = 'Euro';
+                break;
+            case'kontoPLN':
+                $currencyType = 'złotych';
+                break;
+            case'kontoUSD':
+                $currencyType = 'Dolarów';
+                break;
+        }
         $addActivities = Activity::create([
-            'user_demo_id' => session()->get('idUser'),
+            'userId' => $idUser,
             'type'=> 'Przelew',
             'inorout'=>'wychodzący',
+            'currency'=>$currencyType,
+
             'sendTo'=> $userSenderId,
             'money'=>$money,
         ]);
     }
-    public function addGetMoneyInformation($userSenderAccountNumber, $money){
+    public function addGetMoneyInformation($userSenderAccountNumber,$money,$idUser,$currency){
         $user = UserDemo::where('konto_id',$userSenderAccountNumber)->first();
         $userSenderId = $user->id;
+        switch($currency){
+            case'kontoEUR':
+                $currencyType = 'Euro';
+                break;
+            case'kontoPLN':
+                $currencyType = 'złotych';
+                break;
+            case'kontoUSD':
+                $currencyType = 'Dolarów';
+                break;
+            }
         $addActivities = Activity::create([
-            'user_demo_id' => $userSenderId,
+            'userId' => $userSenderId,
             'type'=> 'Przelew',
             'inorout'=>'przychodzący',
-            'sendFrom'=> session()->get('idUser'),
+            'currency'=>$currencyType,
+            'sendFrom'=> $idUser,
             'money'=>$money,
         ]);
     }

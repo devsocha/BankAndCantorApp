@@ -54,19 +54,26 @@
                 </table>
             </div>
             <div class="all top-margin">
-                <form method="post" action="#">
-                    <input name="numberAccount" type="number" placeholder="Numer konta do przelewu" required/>
-                    <input name="money" type="number" placeholder="Kwota przelewu" required/>
-                    <select name="currency" required>
-                        <option VALUE="USD">USD - $</option>
-                        <option VALUE="PLN">PLN - zł</option>
-                        <option VALUE="EUR">EUR - &euro;</option>
-                    </select>
-                    <input type="submit" value="Przelej"/>
+                <form method="post" action="{{Route('moneySenderApp')}}">
+                    @csrf
+                    <label>
+                        <input name="numberAccount" type="number" placeholder="Numer konta do przelewu" required/>
+                    </label>
+                    <label>
+                        <input name="money" type="number" placeholder="Kwota przelewu" required/>
+                    </label>
+                    <label>
+                        <select name="currency" required>
+                            <option VALUE="kontoUSD">USD - $</option>
+                            <option VALUE="kontoPLN">PLN - zł</option>
+                            <option VALUE="kontoEUR">EUR - &euro;</option>
+                        </select>
+                    </label>
+                    <input type="submit" name="sendMoney"/>
                 </form>
             </div>
             <div class="all top-margin">
-                <a  href="{{Route('accountView',['id'=>$idUser])}}">Cofnij</a></br>
+                <a  href="{{Route('accountView',['id'=>$idUser])}}">Cofnij</a>
             </div>
 
         </div>

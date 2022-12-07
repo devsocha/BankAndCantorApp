@@ -18,4 +18,6 @@ Route::get('/accountView/{id}',[\App\Http\Controllers\Controller::class,'account
 Route::get('/sendMoney',[\App\Http\Controllers\Controller::class,'sendMoney'])->name('moneySender');
 Route::get('/transformValue',[\App\Http\Controllers\Controller::class,'transformValue'])->name('transformValue');
 Route::get('/listTransaction',[\App\Http\Controllers\Controller::class,'listTransaction'])->name('listTransaction');
+Route::post('/sendMoneyApp',[\App\Http\Controllers\Controller::class,'moneySender'])->name('moneySenderApp');
+
 

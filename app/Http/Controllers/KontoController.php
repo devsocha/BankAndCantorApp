@@ -13,42 +13,10 @@ class KontoController extends Controller
          $user = UserDemo::where('id',$idUser)->first();
          return $user->konto_id;
     }
-    public  function  checkMoneyOnAccount($idUser,$howMuchMoney,$currency){
-        $accountId = $this->getAccount($idUser);
-        switch($currency){
-            case 'USD':
-                $check = Konto::where('id',$accountId)->where('kontoUSD','>',$howMuchMoney)->exists();
-                if($check){
-                    return true;
-                }else{
-                    return false;
-                }
-                break;
-            case 'PLN':
-                $check = Konto::where('id',$accountId)->where('kontoPLN','>',$howMuchMoney)->exists();
-                if($check){
-                    return true;
-                }else{
-                    return false;
-                }
-                break;
-            case 'EUR':
-                $check = Konto::where('id',$accountId)->where('kontoEUR','>',$howMuchMoney)->exists();
-                if($check){
-                    return true;
-                }else{
-                    return false;
-                }
-                break;
-        }
-    }
+
     public function checkAccount($numberAccount){
-        $exists = Konto::where('id',$numberAccount)->exists();
-        if($exists){
-            return true;
-        }else{
-            return false;
-        }
+
+
     }
     public function addMoneyToAccount($money,$numberAccount,$currency){
 
@@ -85,7 +53,7 @@ class KontoController extends Controller
                 break;
 
         }
-        $newMoney = $oldMoney+$money;
+        $newMoney = $oldMoney-$money;
         $accountUpdate = Konto::where('id',$idAccount)->update([
             $currency => $newMoney,
         ]);

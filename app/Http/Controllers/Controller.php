@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Konto;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -64,25 +65,29 @@ class Controller extends BaseController
     public function moneySender(Request $request){
         $idUser = session()->get('idUser');
         $kontoController = new KontoController();
-        $money = 2;
-        $currency = 'USD';
-        $userSenderAccountNumber = 8;
-        $currency = 'konto' + $currency;
+        $money = $request->input('money');
+        $currency = $request->input('currency');
+        $userSenderAccountNumber = $request->input('numberAccount');
         // sprawdzenie czy ma takie fundusze
-        $existsMoney= $kontoController->checkMoneyOnAccount($idUser,$money,$currency);
+        $accountId = $kontoController->getAccount($idUser);
+        $check = Konto::where('id',$accountId)->where($currency,'>',$money)->exists();
+        $exists = Konto::where('id',$userSenderAccountNumber)->exists();
+//        $existsMoney = $kontoController->checkMoneyOnAccount($idUser,$money,$currency);
         // sprawdzenie czy konto do przelewu istnieje
-        $existsAccount = $kontoController->checkAccount($userSenderAccountNumber);
-        if($existsAccount===true && $existsMoney === true){
+//        $existsAccount = $kontoController->checkAccount($userSenderAccountNumber);
+        if($check && $exists){
             // dodawanie czynnosci 1
             $activity = new ActivityController();
-            $activity->addSendMoneyInformation($userSenderAccountNumber, $money);
+            $activity->addSendMoneyInformation($userSenderAccountNumber,$money,$idUser,$currency);
             // dodawanie czynnosci 2
-            $activity->addGetMoneyInformation($userSenderAccountNumber, $money);
+            $activity->addGetMoneyInformation($userSenderAccountNumber,$money,$idUser,$currency);
             // odejmowanie od konta
             $kontoController->takeMoneyFromAccount($money,$idUser,$currency);
             // dodawanie do konta
-           $kontoController->addMoneyToAccount($money,$userSenderAccountNumber,$currency);
+            $kontoController->addMoneyToAccount($money,$userSenderAccountNumber,$currency);
+
         }
+        return back();
 
     }
 }
