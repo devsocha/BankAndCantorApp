@@ -61,4 +61,24 @@ class Controller extends BaseController
             'text'=>'Przelew wychodzący na numer konta bankowego xyz na kwote 111 zł'
         ]);
     }
+    public function moneySender(Request $request){
+        $idUser = session()->get('idUser');
+        $kontoController = new KontoController();
+        $money;
+        $currency = 'USD';
+        $currency = 'konto' + $currency;
+        // sprawdzenie czy ma takie fundusze
+        $existsMoney= $kontoController->checkMoneyOnAccount($idUser,$money,$currency)
+        // sprawdzenie czy konto do przelewu istnieje
+        $existsAccount = $kontoController->checkAccount();
+        if($existsAccount===true && $existsMoney === true){
+            // dodawanie czynnosci 1
+            // dodawanie czynnosci 2
+            // odejmowanie od konta
+
+            // dodawanie do konta
+            $this->sendMoneyToAccont($money,$numberAccount,$currency);
+        }
+
+    }
 }
