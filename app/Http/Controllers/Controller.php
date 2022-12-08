@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Api\NbpApi;
 use App\Models\Konto;
+use App\Service\CurrencyService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -42,6 +44,9 @@ class Controller extends BaseController
         ]);
     }
     public function transformValue (){
+        $api = new NbpApi();
+        $currencyUsd = $api->fetch('usd');
+        $currencyEur = $api->fetch('eur');
         $userDemo = new UserDemoController();
         $demo = $userDemo->getInformation();
         $idUser = session()->get('idUser');
@@ -49,6 +54,8 @@ class Controller extends BaseController
             'demo'=>$demo,
             'idUser'=>$idUser,
             'tittle'=> 'kantor',
+            'currencyUsd'=>$currencyUsd,
+            'currencyEur'=>$currencyEur,
         ]);
     }
     public function listTransaction (){
