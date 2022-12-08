@@ -96,4 +96,7 @@ class Controller extends BaseController
         return back();
 
     }
+    //TODO Funkcja wymiany walut
+    //TODO Sprawdzenie poprawności wyboru PLN to Other and Other to PLN
+    //TODO Modyfikacja Api aby pobierało tabele kupna sprzedaży a nie średniego kursu
 }

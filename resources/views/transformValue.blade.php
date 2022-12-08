@@ -54,8 +54,8 @@
                 </table>
             </div>
             <div class="all top-margin">
-                Kurs dolara: {{$currencyUsd['content'][0]['mid']}}<br>
-                Kurs euro: {{$currencyEur['content'][0]['mid']}}<br><br>
+                Kurs dolara: {{round($currencyUsd['content'][0]['mid'],4)}}<br>
+                Kurs euro: {{round($currencyEur['content'][0]['mid'],4)}}<br><br>
                 <form method="post" action="#">
                     Wymieniana waluta:
                     <select>
