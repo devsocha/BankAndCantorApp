@@ -56,7 +56,7 @@
            <div class="all top-margin">
                <a  href="{{Route('moneySender')}}">Przelej środki</a></br>
                <a  href="{{Route('transformValue')}}">Kantor - Przewalutowanie</a></br>
-               <a  href="{{Route('listTransaction')}}">Pokaż wykaz z ostatnich 30 dni</a></br>
+               <a  href="{{Route('listTransaction')}}">Pokaż wykaz przelewów z ostatnich 30 dni</a></br>
            </div>
 
        </div>

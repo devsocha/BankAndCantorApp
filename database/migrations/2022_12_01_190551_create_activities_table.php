@@ -18,13 +18,10 @@ return new class extends Migration
             $table->bigInteger('userId')->nullable();
             $table->string('type');
             $table->string('inorout');
-            $table->string('transfrom')->nullable();
-            $table->string('transto')->nullable();
             $table->string('currency')->nullable();
             $table->bigInteger('sendTo')->nullable();
             $table->bigInteger('sendFrom')->nullable();
             $table->double('money')->nullable();
-            $table->double('moneyTransfered')->nullable();
             $table->timestamps();
         });
     }

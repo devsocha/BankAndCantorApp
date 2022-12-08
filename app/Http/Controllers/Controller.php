@@ -55,11 +55,13 @@ class Controller extends BaseController
         $userDemo = new UserDemoController();
         $demo = $userDemo->getInformation();
         $idUser = session()->get('idUser');
+        $activityController = new ActivityController();
+        $activities = $activityController->showActivitySender($idUser);
         return view('listTransaction',[
             'demo'=>$demo,
             'idUser'=>$idUser,
             'tittle'=> 'lista transakcji',
-            'text'=>'Przelew wychodzący na numer konta bankowego xyz na kwote 111 zł'
+            'acitivities'=>$activities,
         ]);
     }
     public function moneySender(Request $request){
@@ -72,9 +74,6 @@ class Controller extends BaseController
         $accountId = $kontoController->getAccount($idUser);
         $check = Konto::where('id',$accountId)->where($currency,'>',$money)->exists();
         $exists = Konto::where('id',$userSenderAccountNumber)->exists();
-//        $existsMoney = $kontoController->checkMoneyOnAccount($idUser,$money,$currency);
-        // sprawdzenie czy konto do przelewu istnieje
-//        $existsAccount = $kontoController->checkAccount($userSenderAccountNumber);
         if($check && $exists){
             // dodawanie czynnosci 1
             $activity = new ActivityController();

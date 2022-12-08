@@ -60,10 +60,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($acitivities as $acitivity)
+                        <tr>
+                            <td>{{$acitivity->type}} {{$acitivity->inorout}} {{$acitivity->money}} {{$acitivity->currency}}</td>
+                        </tr>
+                    @endforeach
 
-                    <tr>
-                        <td>Przelew wychodzący na numer konta bankowego xyz na kwote 111 zł</td>
-                    </tr>
+
                     </tbody>
                 </table>
             <div class="all top-margin">

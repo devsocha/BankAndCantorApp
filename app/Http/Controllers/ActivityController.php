@@ -56,4 +56,7 @@ class ActivityController extends Controller
             'money'=>$money,
         ]);
     }
+    public function showActivitySender($idUser){
+        return $activities = Activity::where('userId',$idUser)->get();
+    }
 }
