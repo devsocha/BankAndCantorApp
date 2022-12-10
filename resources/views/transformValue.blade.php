@@ -54,27 +54,27 @@
                 </table>
             </div>
             <div class="all top-margin">
-                Kurs dolara: {{round($currencyUsd['content'][0]['mid'],4)}}<br>
-                Kurs euro: {{round($currencyEur['content'][0]['mid'],4)}}<br><br>
+                Kurs dolara: {{round($currencyUsd['content'][0]['mid'],4)}}</br>
+                Kurs euro: {{round($currencyEur['content'][0]['mid'],4)}}</br></br>
                 <form method="post" action="#">
                     Wymieniana waluta:
                     <select>
-                        <option VALUE="usd">USD - $</option>
-                        <option VALUE="pln">PLN - zł</option>
-                        <option VALUE="eur">EUR - &euro;</option>
+                        <option VALUE="kontoPLN">PLN - zł</option>
+                        <option VALUE="kontoUSD">USD - $</option>
+                        <option VALUE="kontoEUR">EUR - &euro;</option>
                     </select>
                     <input type="number" placeholder="Kwota"/></br>
                     Na jaką walutę chcesz wymienić:
                     <select>
-                        <option VALUE="usd">USD - $</option>
-                        <option VALUE="pln">PLN - zł</option>
-                        <option VALUE="eur">EUR - &euro;</option>
+                        <option VALUE="kontoUSD">USD - $</option>
+                        <option VALUE="kontoPLN">PLN - zł</option>
+                        <option VALUE="kontoEUR">EUR - &euro;</option>
                     </select></br></br>
                     <input type="submit" value="Wymień"/>
                 </form>
             </div>
             <div class="all top-margin">
-                <a  href="{{Route('accountView',['id'=>$idUser])}}">Cofnij</a></br>
+                <a  href="{{Route('accountView',['id'=>$idUser])}}">Cofnij</a></br></br>
             </div>
 
         </div>

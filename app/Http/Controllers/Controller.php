@@ -94,7 +94,14 @@ class Controller extends BaseController
 
         }
         return back();
+    }
+    public function changeCurrency(Request $request){
+        $money = 2;
+        $currencyFrom = 'kontoUSD';
+        $currencyTo = 'kontoPLN';
 
+
+        return back();
     }
     //TODO Funkcja wymiany walut
     //TODO Sprawdzenie poprawności wyboru PLN to Other and Other to PLN
