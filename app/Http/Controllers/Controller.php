@@ -99,8 +99,12 @@ class Controller extends BaseController
         $money = 2;
         $currencyFrom = 'kontoUSD';
         $currencyTo = 'kontoPLN';
-
-
+        $kontoController = new KontoController();
+        if($currencyFrom != 'kontoPLN' && $currencyTo === 'kontoPLN'){
+            $kontoController->transactionCurrencyFromOtherToPln($currencyFrom,$money);
+        }elseif($currencyFrom === 'kontoPLN' && $currencyTo != 'kontoPLN'){
+            $kontoController->transactionCurrencyFromPlnToOther($currencyTo,$money);
+        }
         return back();
     }
     //TODO Funkcja wymiany walut
