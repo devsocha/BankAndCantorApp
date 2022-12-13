@@ -19,5 +19,5 @@ Route::get('/sendMoney',[\App\Http\Controllers\Controller::class,'sendMoney'])->
 Route::get('/transformValue',[\App\Http\Controllers\Controller::class,'transformValue'])->name('transformValue');
 Route::get('/listTransaction',[\App\Http\Controllers\Controller::class,'listTransaction'])->name('listTransaction');
 Route::post('/sendMoneyApp',[\App\Http\Controllers\Controller::class,'moneySender'])->name('moneySenderApp');
-
+Route::post('/changeCurrency',[\App\Http\Controllers\Controller::class,'changeCurrency'])->name('changeCurrency');
 

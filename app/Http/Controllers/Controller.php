@@ -96,18 +96,18 @@ class Controller extends BaseController
         return back();
     }
     public function changeCurrency(Request $request){
-        $money = 2;
-        $currencyFrom = 'kontoUSD';
-        $currencyTo = 'kontoPLN';
+        $money = $request->input('money');
+        $currencyFrom = $request->input('currencyFrom');
+        $currencyTo = $request->input('currencyTo');;
         $kontoController = new KontoController();
-        if($currencyFrom != 'kontoPLN' && $currencyTo === 'kontoPLN'){
+        if($currencyFrom != 'kontoPLN' && $currencyTo == 'kontoPLN'){
             $kontoController->transactionCurrencyFromOtherToPln($currencyFrom,$money);
-        }elseif($currencyFrom === 'kontoPLN' && $currencyTo != 'kontoPLN'){
+        }elseif($currencyFrom == 'kontoPLN' && $currencyTo != 'kontoPLN'){
             $kontoController->transactionCurrencyFromPlnToOther($currencyTo,$money);
         }
         return back();
     }
-    //TODO Funkcja wymiany walut
-    //TODO Sprawdzenie poprawności wyboru PLN to Other and Other to PLN
+//    TODO Funkcja wymiany walut
+//    TODO Sprawdzenie poprawności wyboru PLN to Other and Other to PLN
     //TODO Modyfikacja Api aby pobierało tabele kupna sprzedaży a nie średniego kursu
 }

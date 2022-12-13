@@ -71,12 +71,12 @@ class KontoController extends Controller
         switch($currency){
             case'kontoUSD':
                 $money = $pln/$dolar;
-                $this->takeMoneyFromAccount($pln,$idUser,$currency);
+                $this->takeMoneyFromAccount($pln,$idUser,'kontoPLN');
                 $this->addMoneyToAccount($money,$idAccount,$currency);
             break;
             case 'kontoEUR':
                 $money = $pln/$euro;
-                $this->takeMoneyFromAccount($pln,$idUser,$currency);
+                $this->takeMoneyFromAccount($pln,$idUser,'kontoPLN');
                 $this->addMoneyToAccount($money,$idAccount,$currency);
                 break;
         }
@@ -93,13 +93,13 @@ class KontoController extends Controller
         switch($currency){
             case'kontoUSD':
                 $pln = $money*$dolar;
-                $this->takeMoneyFromAccount($pln,$idUser,$currency);
-                $this->addMoneyToAccount($money,$idAccount,$currency);
+                $this->takeMoneyFromAccount($money,$idUser,$currency);
+                $this->addMoneyToAccount($pln,$idAccount,'kontoPLN');
                 break;
             case 'kontoEUR':
                 $pln = $money*$euro;
-                $this->takeMoneyFromAccount($pln,$idUser,$currency);
-                $this->addMoneyToAccount($money,$idAccount,$currency);
+                $this->takeMoneyFromAccount($money,$idUser,$currency);
+                $this->addMoneyToAccount($pln,$idAccount,'kontoPLN');
                 break;
         }
     }

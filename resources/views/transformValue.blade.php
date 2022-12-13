@@ -56,20 +56,27 @@
             <div class="all top-margin">
                 Kurs dolara: {{round($currencyUsd['content'][0]['mid'],4)}}</br>
                 Kurs euro: {{round($currencyEur['content'][0]['mid'],4)}}</br></br>
-                <form method="post" action="#">
+                <form method="post" action="{{Route('changeCurrency')}}">
+                    @csrf
                     Wymieniana waluta:
-                    <select>
-                        <option VALUE="kontoPLN">PLN - zł</option>
-                        <option VALUE="kontoUSD">USD - $</option>
-                        <option VALUE="kontoEUR">EUR - &euro;</option>
-                    </select>
-                    <input type="number" placeholder="Kwota"/></br>
+                    <label>
+                        <select name="currencyFrom" required>
+                            <option value="kontoPLN">PLN - zł</option>
+                            <option value="kontoUSD">USD - $</option>
+                            <option value="kontoEUR">EUR - &euro;</option>
+                        </select>
+                    </label>
+                    <label>
+                        <input type="number" name="money" placeholder="Kwota" required/>
+                    </label></br>
                     Na jaką walutę chcesz wymienić:
-                    <select>
-                        <option VALUE="kontoUSD">USD - $</option>
-                        <option VALUE="kontoPLN">PLN - zł</option>
-                        <option VALUE="kontoEUR">EUR - &euro;</option>
-                    </select></br></br>
+                    <label>
+                        <select name="currencyTo" required>
+                            <option value="kontoUSD">USD - $</option>
+                            <option value="kontoPLN">PLN - zł</option>
+                            <option value="kontoEUR">EUR - &euro;</option>
+                        </select>
+                    </label></br></br>
                     <input type="submit" value="Wymień"/>
                 </form>
             </div>
